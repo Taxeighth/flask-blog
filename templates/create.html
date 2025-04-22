@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <meta charset="UTF-8">
-    <title>글 작성</title>
-</head>
-<body>
 {% extends "base.html" %}
+
 {% block title %}글 작성{% endblock %}
+
 {% block content %}
-    <h2>✍️ 새 글 작성</h2>
-    <form method="POST">
+  <h2>✍️ 새 글 작성</h2>
+  <form method="POST">
     <label>제목:</label><br>
     <input type="text" name="title" required><br><br>
 
@@ -21,6 +15,3 @@
   </form>
   <p><a href="/posts">← 글 목록으로</a></p>
 {% endblock %}
-
-</body>
-</html>

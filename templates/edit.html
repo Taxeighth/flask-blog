@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>글 수정</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    {% extends "base.html" %}
-    {% block title %}글 수정{% endblock %}
-    {% block content %}
-      <h2>✏️ 글 수정</h2>
-      <form method="POST">
-        <label>제목:</label><br>
-        <input type="text" name="title" value="{{ title }}" required><br><br>
-    
-        <label>내용:</label><br>
-        <textarea name="content" rows="10" required>{{ content }}</textarea><br><br>
-    
-        <button type="submit">저장</button>
-      </form>
-      <p><a href="/posts">← 글 목록으로</a></p>
-    {% endblock %}
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}글 수정{% endblock %}
+
+{% block content %}
+  <h2>✏️ 글 수정</h2>
+  <form method="POST">
+    <label>제목:</label><br>
+    <input type="text" name="title" value="{{ title }}" required><br><br>
+
+    <label>내용:</label><br>
+    <textarea name="content" rows="10" required>{{ content }}</textarea><br><br>
+
+    <button type="submit">저장</button>
+  </form>
+  <p><a href="/posts">← 글 목록으로</a></p>
+{% endblock %}

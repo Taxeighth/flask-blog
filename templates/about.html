@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>소개 - 나의 Flask 블로그</title>
-</head>
-<body>
-  {% extends "base.html" %}
-  {% block title %}소개{% endblock %}
-  {% block content %}
-    <h2>🙋 소개</h2>
-    <p>이 블로그는 세무 업무, 개인 공부, 일상 기록을 정리하는 공간입니다.</p>
-    <p>업무 매뉴얼이나 기본 세법 지식 아카이빙에 활용됩니다.</p>
-{% endblock %}
+{% extends "base.html" %}
 
-    <p><a href="/">← 홈으로 돌아가기</a></p>
-</body>
-</html>
+{% block title %}소개{% endblock %}
+
+{% block content %}
+  <h2>🙋 소개</h2>
+  <p>이 블로그는 세무 업무, 개인 공부, 일상 기록을 정리하는 공간입니다.</p>
+  <p>기밀을 제외한 기본 매뉴얼이나 세법 지식을 아카이빙하는 용도로 활용됩니다.</p>
+{% endblock %}
