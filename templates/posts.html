@@ -10,8 +10,10 @@
            value="{{ request.args.get('q', '') }}" class="search-input">
     <button type="submit">검색</button>
   </form>
-  
-  <p><a href="/create">✍️ 새 글 작성하기</a></p>
+
+  {% if 'user' in session %}
+    <p><a href="/create">✍️ 새 글 작성하기</a></p>
+  {% endif %}
 
   <ul>
     {% if posts %}
@@ -21,10 +23,13 @@
             {{ highlight_keyword(post.title, request.args.get('q', '')) }}
           </a>
           <span style="color: gray; font-size: 0.9em;"> ({{ post.date }})</span>
-          <form action="/delete/{{ loop.index0 }}" method="POST" style="display:inline;" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-            <button type="submit">삭제</button>
-          </form>
-          <a href="/edit/{{ loop.index0 }}" style="margin-left: 8px;">✏️ 수정</a>
+
+          {% if 'user' in session %}
+            <form action="/delete/{{ loop.index0 }}" method="POST" style="display:inline;" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+              <button type="submit">삭제</button>
+            </form>
+            <a href="/edit/{{ loop.index0 }}" style="margin-left: 8px;">✏️ 수정</a>
+          {% endif %}
         </li>
       {% endfor %}
     {% else %}

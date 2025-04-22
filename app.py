@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, redirect, abort
+from flask import Flask, render_template, request, redirect, abort, url_for, session
 from datetime import datetime
 import os
+import re
+import markdown
+from markupsafe import Markup
 
 app = Flask(__name__)
 
@@ -19,6 +22,25 @@ def load_posts():
                     posts.append({"title": title, "content": content, "date": date})
     print("불러온 글:", posts)
     return posts
+
+app.secret_key = '비밀키123!'  # 꼭 설정해야 세션 작동함
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if username == "admin" and password == "password123":
+            session["user"] = username
+            return redirect("/posts")
+        else:
+            return render_template("login.html", error="❌ 아이디 또는 비밀번호가 잘못되었습니다.")
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect("/")
 
 @app.route("/")
 def home():
@@ -126,8 +148,6 @@ def edit(post_id):
         return render_template("edit.html", title=title, content=content)
 
 
-import re
-from markupsafe import Markup
 
 def highlight_keyword(text, keyword):
     if not keyword:
@@ -135,8 +155,6 @@ def highlight_keyword(text, keyword):
     pattern = re.compile(re.escape(keyword), re.IGNORECASE)
     highlighted = pattern.sub(lambda match: f"<mark>{match.group(0)}</mark>", text)
     return Markup(highlighted)
-
-import markdown
 
 if __name__ == "__main__":
     app.run(debug=True)
