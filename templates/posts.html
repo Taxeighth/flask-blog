@@ -5,12 +5,12 @@
 {% block content %}
   <h2>📚 글 목록</h2>
 
-  <form method="GET" action="/posts">
+  <form method="GET" action="/posts" style="display: flex; gap: 8px; align-items: center; margin-bottom: 16px;">
     <input type="text" name="q" placeholder="검색어를 입력하세요"
            value="{{ request.args.get('q', '') }}" class="search-input">
     <button type="submit">검색</button>
   </form>
-
+  
   <p><a href="/create">✍️ 새 글 작성하기</a></p>
 
   <ul>
