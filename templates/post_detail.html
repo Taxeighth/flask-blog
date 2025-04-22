@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+<p style="color: gray;">작성일: {{ date }}</p>
+<div>{{ content|safe }}</div>
+
+
+
+    <p><a href="/posts">← 글 목록으로 돌아가기</a></p>
+</body>
+</html>
