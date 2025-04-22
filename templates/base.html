@@ -12,13 +12,15 @@
             <a href="/">홈</a> |
             <a href="/about">소개</a> |
             <a href="/posts">글 목록</a> |
-            {% if 'user' in session %}
+            {% if 'user' in session and request.path != '/' %}
               <a href="/create">글 작성</a> |
+            {% endif %}
+            {% if 'user' in session %}
               <a href="/logout">로그아웃</a>
             {% else %}
               <a href="/login">로그인</a>
             {% endif %}
-          </nav>
+
         <hr>
     </header>
 
