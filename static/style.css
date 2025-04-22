@@ -45,3 +45,11 @@ input, textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/* 검색창 크기 조절 */
+.search-input {
+    width: 250px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
