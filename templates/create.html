@@ -4,14 +4,38 @@
 
 {% block content %}
   <h2>✍️ 새 글 작성</h2>
-  <form method="POST">
+
+  <!-- Toast UI Editor 스타일 + 스크립트 CDN -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+  <form method="POST" onsubmit="return submitPost()">
     <label>제목:</label><br>
     <input type="text" name="title" required><br><br>
 
     <label>내용:</label><br>
-    <textarea name="content" rows="10" required></textarea><br><br>
+    <div id="editor"></div>  <!-- Toast UI Editor 들어갈 자리 -->
 
-    <button type="submit">저장하기</button>
+    <!-- 최종 마크다운이 들어갈 숨겨진 textarea -->
+    <textarea name="content" id="content" style="display:none;"></textarea>
+
+    <br><button type="submit">저장하기</button>
   </form>
   <p><a href="/posts">← 글 목록으로</a></p>
+
+  <script>
+    // 에디터 초기화
+    const editor = new toastui.Editor({
+      el: document.querySelector('#editor'),
+      height: '400px',
+      initialEditType: 'markdown',
+      previewStyle: 'vertical'
+    });
+
+    // 폼 제출 시 textarea에 마크다운 내용 입력
+    function submitPost() {
+      document.querySelector('#content').value = editor.getMarkdown();
+      return true;
+    }
+  </script>
 {% endblock %}
