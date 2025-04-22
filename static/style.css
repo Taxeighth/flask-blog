@@ -53,3 +53,20 @@ input, textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+/* 작성 버튼 추가 */
+  .write-button {
+    display: inline-block;
+    background-color: #ddd;
+    color: #222;
+    padding: 6px 14px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .write-button:hover {
+    background-color: #ccc;
+  }

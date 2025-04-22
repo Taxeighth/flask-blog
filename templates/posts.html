@@ -12,7 +12,9 @@
   </form>
 
   {% if 'user' in session %}
-    <p><a href="/create">✍️ 새 글 작성하기</a></p>
+    <div style="margin: 16px 0;">
+      <a href="/create" class="write-button">&gt; 작성 &lt;</a>
+    </div>
   {% endif %}
 
   <ul>
