@@ -6,29 +6,38 @@
     <title>글 목록</title>
 </head>
 <body>
-    <h1>📝 글 목록</h1>
+  {% extends "base.html" %}
+  {% block title %}글 목록{% endblock %}
+  {% block content %}
+    <h2>📚 글 목록</h2>
+  
+    <form method="GET" action="/posts">
+      <input type="text" name="q" placeholder="검색어를 입력하세요" value="{{ request.args.get('q', '') }}">
+      <button type="submit">검색</button>
+    </form>
+  
+    <p><a href="/create">✍️ 새 글 작성하기</a></p>
+  
     <ul>
-      <form method="GET" action="/posts">
-        <input type="text" name="q" placeholder="검색어를 입력하세요" value="{{ request.args.get('q', '') }}">
-        <button type="submit">검색</button>
-      </form>
       {% if posts %}
         {% for post in posts %}
-         <li>
-          <a href="/posts/{{ loop.index0 }}">
-          {{ highlight_keyword(post.title, request.args.get('q', '')) }}
-         </a>
-         <span style="color: gray; font-size: 0.9em;"> ({{ post.date }})</span>
-         <form action="/delete/{{ loop.index0 }}" method="POST" style="display:inline;" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-          <button type="submit">삭제</button>
-         </form>
-         <a href="/edit/{{ loop.index0 }}" style="margin-left: 8px;">✏️ 수정</a>
-        </li>
-     {% endfor %}
-    {% else %}
-      <p style="color: gray;">❗ 검색 결과가 없습니다.</p>
-    {% endif %}
+          <li>
+            <a href="/posts/{{ loop.index0 }}">
+              {{ highlight_keyword(post.title, request.args.get('q', '')) }}
+            </a>
+            <span style="color: gray; font-size: 0.9em;"> ({{ post.date }})</span>
+            <form action="/delete/{{ loop.index0 }}" method="POST" style="display:inline;" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+              <button type="submit">삭제</button>
+            </form>
+            <a href="/edit/{{ loop.index0 }}" style="margin-left: 8px;">✏️ 수정</a>
+          </li>
+        {% endfor %}
+      {% else %}
+        <p style="color: gray;">❗ 검색 결과가 없습니다.</p>
+      {% endif %}
     </ul>
+  {% endblock %}
+  
     
       </ul>
       

@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
     <title>글 작성</title>
 </head>
 <body>
-    <h1>🖊️ 새 글 작성</h1>
+{% extends "base.html" %}
+{% block title %}글 작성{% endblock %}
+{% block content %}
+    <h2>✍️ 새 글 작성</h2>
     <form method="POST">
-        <label>제목:</label><br>
-        <input type="text" name="title" required><br><br>
+    <label>제목:</label><br>
+    <input type="text" name="title" required><br><br>
 
-        <label>내용:</label><br>
-        <textarea name="content" rows="10" cols="50" required></textarea><br><br>
+    <label>내용:</label><br>
+    <textarea name="content" rows="10" required></textarea><br><br>
 
-        <button type="submit">저장하기</button>
-    </form>
+    <button type="submit">저장하기</button>
+  </form>
+  <p><a href="/posts">← 글 목록으로</a></p>
+{% endblock %}
 
-    <p><a href="/posts">← 글 목록으로</a></p>
 </body>
 </html>
