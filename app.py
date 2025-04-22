@@ -4,6 +4,9 @@ import os
 import re
 import markdown
 from markupsafe import Markup
+ADMIN_ID = "admin"
+ADMIN_PW = "qlqjs!3367"
+
 
 app = Flask(__name__)
 
@@ -30,7 +33,7 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username == "admin" and password == "password123":
+        if username == ADMIN_ID and password == ADMIN_PW:
             session["user"] = username
             return redirect("/posts")
         else:
