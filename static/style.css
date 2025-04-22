@@ -21,18 +21,18 @@ a:hover {
 }
 
 button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 6px 12px;
+    background-color: #ddd;         /* 연회색 */
+    color: #222;                    /* 진한 회색~검정 글씨 */
+    border: 1px solid #bbb;         /* 연한 테두리 */
+    padding: 4px 10px;              /* 작고 깔끔한 버튼 크기 */
     border-radius: 4px;
+    font-size: 0.9rem;
     cursor: pointer;
-    margin-left: 10px;
-}
-
-button:hover {
-    background-color: #c0392b;
-}
+  }
+  
+  button:hover {
+    background-color: #ccc;         /* hover 시 약간 어둡게 */
+  }
 
 form {
     margin-top: 10px;
