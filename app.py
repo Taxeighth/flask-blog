@@ -51,7 +51,32 @@ def home():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    try:
+        with open("about.txt", "r", encoding="utf-8") as f:
+            content = f.read()
+    except FileNotFoundError:
+        content = "소개글이 아직 작성되지 않았습니다."
+    html_content = markdown.markdown(content)
+    return render_template("about.html", content=html_content)
+
+@app.route("/about/edit", methods=["GET", "POST"])
+def edit_about():
+    if 'user' not in session:
+        return redirect("/login")
+
+    if request.method == "POST":
+        new_content = request.form["content"]
+        with open("about.txt", "w", encoding="utf-8") as f:
+            f.write(new_content)
+        return redirect("/about")
+
+    try:
+        with open("about.txt", "r", encoding="utf-8") as f:
+            content = f.read()
+    except FileNotFoundError:
+        content = ""
+
+    return render_template("edit_about.html", content=content)
 
 @app.route("/posts")
 def posts():
